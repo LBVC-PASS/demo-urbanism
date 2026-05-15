@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Nunito', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#1B4F8A] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#163f6e] active:bg-[#163f6e] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#1B4F8A] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-white text-[#1B4F8A] font-semibold px-6 py-3 rounded-lg border-2 border-[#1B4F8A] hover:bg-blue-50 active:bg-blue-100 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#1B4F8A] focus:ring-offset-2;
+  }
+  .option-btn {
+    @apply w-full text-left px-5 py-4 rounded-xl border-2 border-gray-200 hover:border-[#1B4F8A] hover:bg-blue-50 active:bg-blue-100 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#1B4F8A] focus:ring-offset-2 font-medium text-gray-800;
+  }
+  .option-btn-selected {
+    @apply border-[#1B4F8A] bg-blue-50 text-[#1B4F8A];
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 p-6;
+  }
+}
