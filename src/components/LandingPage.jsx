@@ -18,7 +18,7 @@ const permits = [
     icon: '🚧',
     title: 'Clôture',
     description: 'Clôtures, murets et haies de séparation',
-    available: false,
+    available: true,
   },
   {
     id: 'patio',

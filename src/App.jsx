@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import questionsCabanon from './data/questions.js'
 import questionsClimatisation from './data/questionsClimatisation.js'
+import questionsCloture from './data/questionsCloture.js'
 import LandingPage from './components/LandingPage.jsx'
 import WizardStep from './components/WizardStep.jsx'
 import ResultScreen from './components/ResultScreen.jsx'
@@ -17,6 +18,11 @@ const PERMIT_CONFIG = {
     questions: questionsClimatisation,
     estimatedSteps: 5,
     label: 'Climatisation / thermopompe',
+  },
+  cloture: {
+    questions: questionsCloture,
+    estimatedSteps: 7,
+    label: 'Clôture',
   },
 }
 
