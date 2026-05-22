@@ -1,75 +1,110 @@
 import { useState } from 'react'
-import questions from './data/questions.js'
+import questionsCabanon from './data/questions.js'
+import questionsClimatisation from './data/questionsClimatisation.js'
+import questionsCloture from './data/questionsCloture.js'
+import LandingPage from './components/LandingPage.jsx'
 import WizardStep from './components/WizardStep.jsx'
 import ResultScreen from './components/ResultScreen.jsx'
 import Declaration from './components/Declaration.jsx'
 
-const INITIAL_STATE = {
-  currentQuestionId: questions[0].id,
-  answers: [],
-  result: null,
-  triggerReason: null,
-  showDeclaration: false,
+// estimatedSteps = longest path through the question graph (excluding parallel branches)
+const PERMIT_CONFIG = {
+  cabanon: {
+    questions: questionsCabanon,
+    estimatedSteps: 9,
+    label: 'Cabanon / abri de jardin',
+  },
+  climatisation: {
+    questions: questionsClimatisation,
+    estimatedSteps: 5,
+    label: 'Climatisation / thermopompe',
+  },
+  cloture: {
+    questions: questionsCloture,
+    estimatedSteps: 7,
+    label: 'Clôture',
+  },
 }
 
-function getQuestionIndex(id) {
-  return questions.findIndex((q) => q.id === id)
+function makeInitialWizardState(questions) {
+  return {
+    currentQuestionId: questions[0].id,
+    answers: [],
+    result: null,
+    triggerReason: null,
+    showDeclaration: false,
+  }
 }
 
 export default function App() {
-  const [state, setState] = useState(INITIAL_STATE)
+  const [selectedPermit, setSelectedPermit] = useState(null)
+  const [wizardState, setWizardState] = useState(null)
+
+  function handleSelectPermit(permitId) {
+    const config = PERMIT_CONFIG[permitId]
+    setSelectedPermit(permitId)
+    setWizardState(makeInitialWizardState(config.questions))
+  }
+
+  function handleBack() {
+    const questions = PERMIT_CONFIG[selectedPermit].questions
+    if (wizardState.answers.length === 0) return
+    const prev = wizardState.answers[wizardState.answers.length - 1]
+    setWizardState({
+      ...wizardState,
+      currentQuestionId: prev.questionId,
+      answers: wizardState.answers.slice(0, -1),
+      result: null,
+      triggerReason: null,
+    })
+  }
 
   function handleAnswer(option) {
-    const currentQuestion = questions.find((q) => q.id === state.currentQuestionId)
+    const questions = PERMIT_CONFIG[selectedPermit].questions
+    const currentQuestion = questions.find((q) => q.id === wizardState.currentQuestionId)
     const newAnswer = { questionId: currentQuestion.id, selectedOption: option }
-    const newAnswers = [...state.answers, newAnswer]
+    const newAnswers = [...wizardState.answers, newAnswer]
 
     if (option.next === 'VOIE_REGULIERE') {
-      setState({
-        ...state,
+      setWizardState({
+        ...wizardState,
         answers: newAnswers,
         result: 'VOIE_REGULIERE',
         triggerReason: option.reason || null,
         currentQuestionId: null,
       })
     } else if (option.next === 'VOIE_RAPIDE') {
-      setState({
-        ...state,
+      setWizardState({
+        ...wizardState,
         answers: newAnswers,
         result: 'VOIE_RAPIDE',
         currentQuestionId: null,
       })
     } else {
-      setState({
-        ...state,
+      setWizardState({
+        ...wizardState,
         currentQuestionId: option.next,
         answers: newAnswers,
       })
     }
   }
 
-  function handleBack() {
-    if (state.answers.length === 0) return
-    const prev = state.answers[state.answers.length - 1]
-    setState({
-      ...state,
-      currentQuestionId: prev.questionId,
-      answers: state.answers.slice(0, -1),
-      result: null,
-      triggerReason: null,
-    })
-  }
-
   function handleContinueToDeclaration() {
-    setState((s) => ({ ...s, showDeclaration: true }))
+    setWizardState((s) => ({ ...s, showDeclaration: true }))
   }
 
   function handleRestart() {
-    setState(INITIAL_STATE)
+    setSelectedPermit(null)
+    setWizardState(null)
   }
 
-  const currentQuestion = questions.find((q) => q.id === state.currentQuestionId)
-  const questionIndex = currentQuestion ? getQuestionIndex(currentQuestion.id) : -1
+  const config = selectedPermit ? PERMIT_CONFIG[selectedPermit] : null
+  const questions = config?.questions ?? []
+  const estimatedSteps = config?.estimatedSteps ?? questions.length
+  const currentQuestion = questions.find((q) => q.id === wizardState?.currentQuestionId)
+  const questionIndex = currentQuestion ? questions.findIndex((q) => q.id === currentQuestion.id) : -1
+  // stepNumber counts only visited questions (not parallel branch variants)
+  const stepNumber = wizardState?.answers.length + 1
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -82,33 +117,56 @@ export default function App() {
           <h1 className="text-lg font-extrabold leading-tight">
             Déclaration préalable de travaux
           </h1>
-          <p className="text-sm text-blue-200 mt-0.5">Prototype — Cabanon / abri de jardin</p>
+          {config && (
+            <p className="text-sm text-blue-200 mt-0.5">
+              {config.label}
+            </p>
+          )}
+          {!config && (
+            <p className="text-sm text-blue-200 mt-0.5">Prototype</p>
+          )}
         </div>
       </header>
 
+      {/* Fil d'Ariane */}
+      {selectedPermit && (
+        <div className="max-w-2xl w-full mx-auto px-4 pt-4">
+          <button
+            onClick={handleRestart}
+            className="text-sm text-[#1B4F8A] font-semibold hover:underline flex items-center gap-1"
+          >
+            ← Choisir un autre type de travaux
+          </button>
+        </div>
+      )}
+
       {/* Contenu principal */}
       <main className="flex-1 max-w-2xl w-full mx-auto px-4 py-6">
-        {!state.result && currentQuestion && (
+        {!selectedPermit && (
+          <LandingPage onSelect={handleSelectPermit} />
+        )}
+
+        {selectedPermit && wizardState && !wizardState.result && currentQuestion && (
           <WizardStep
             question={currentQuestion}
-            questionIndex={questionIndex}
-            totalQuestions={questions.length}
+            questionIndex={stepNumber - 1}
+            totalQuestions={estimatedSteps}
             onAnswer={handleAnswer}
             onBack={handleBack}
           />
         )}
 
-        {state.result && !state.showDeclaration && (
+        {selectedPermit && wizardState?.result && !wizardState.showDeclaration && (
           <ResultScreen
-            result={state.result}
-            triggerReason={state.triggerReason}
-            answers={state.answers}
+            result={wizardState.result}
+            triggerReason={wizardState.triggerReason}
+            answers={wizardState.answers}
             questions={questions}
             onContinue={handleContinueToDeclaration}
           />
         )}
 
-        {state.showDeclaration && (
+        {selectedPermit && wizardState?.showDeclaration && (
           <Declaration onRestart={handleRestart} />
         )}
       </main>
