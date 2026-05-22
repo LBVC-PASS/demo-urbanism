@@ -6,13 +6,16 @@ import WizardStep from './components/WizardStep.jsx'
 import ResultScreen from './components/ResultScreen.jsx'
 import Declaration from './components/Declaration.jsx'
 
+// estimatedSteps = longest path through the question graph (excluding parallel branches)
 const PERMIT_CONFIG = {
   cabanon: {
     questions: questionsCabanon,
+    estimatedSteps: 9,
     label: 'Cabanon / abri de jardin',
   },
   climatisation: {
     questions: questionsClimatisation,
+    estimatedSteps: 5,
     label: 'Climatisation / thermopompe',
   },
 }
@@ -91,8 +94,11 @@ export default function App() {
 
   const config = selectedPermit ? PERMIT_CONFIG[selectedPermit] : null
   const questions = config?.questions ?? []
+  const estimatedSteps = config?.estimatedSteps ?? questions.length
   const currentQuestion = questions.find((q) => q.id === wizardState?.currentQuestionId)
   const questionIndex = currentQuestion ? questions.findIndex((q) => q.id === currentQuestion.id) : -1
+  // stepNumber counts only visited questions (not parallel branch variants)
+  const stepNumber = wizardState?.answers.length + 1
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -137,8 +143,8 @@ export default function App() {
         {selectedPermit && wizardState && !wizardState.result && currentQuestion && (
           <WizardStep
             question={currentQuestion}
-            questionIndex={questionIndex}
-            totalQuestions={questions.length}
+            questionIndex={stepNumber - 1}
+            totalQuestions={estimatedSteps}
             onAnswer={handleAnswer}
             onBack={handleBack}
           />
