@@ -74,15 +74,18 @@ export default function ResultScreen({ result, triggerReason, answers, questions
         </div>
       ) : (
         <div className="card border-orange-200 bg-orange-50">
-          <p className="text-gray-700 text-sm mb-3">
-            Veuillez soumettre une demande de permis complète via le portail citoyen.
+          <p className="text-sm font-semibold text-gray-800 mb-2">Prochaine étape</p>
+          <p className="text-gray-700 text-sm mb-4">
+            Votre projet nécessite une analyse par un professionnel. Veuillez vous présenter ou communiquer avec le service responsable :
           </p>
-          <a
-            href="https://citoyen.vsmsll.ca"
-            className="inline-flex items-center gap-2 text-[#1B4F8A] font-semibold hover:underline text-sm"
-          >
-            🔗 citoyen.vsmsll.ca
-          </a>
+          <div className="bg-white rounded-xl border border-orange-200 p-4 space-y-1">
+            <p className="font-bold text-gray-900 text-sm">
+              Service de l'Aménagement du territoire et du développement durable
+            </p>
+            <p className="text-sm text-gray-600">Ville de Sainte-Marthe-sur-le-Lac</p>
+            <p className="text-sm text-gray-600">3060, boul. des Promenades</p>
+            <p className="text-sm text-gray-600">Sainte-Marthe-sur-le-Lac (Québec)  J0N 1P0</p>
+          </div>
         </div>
       )}
 
