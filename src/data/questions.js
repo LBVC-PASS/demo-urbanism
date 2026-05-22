@@ -20,6 +20,12 @@ const questions = [
         next: "VOIE_REGULIERE",
         reason: "Une remise n'est autorisée qu'en cour avant secondaire, latérale et arrière. L'implantation en cour avant principale n'est pas permise (art. 155, 2°).",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -35,6 +41,12 @@ const questions = [
         value: "yes",
         next: "VOIE_REGULIERE",
         reason: "Une seule remise par logement est autorisée sur un terrain. L'ajout d'une deuxième remise n'est pas permis (art. 155, 1°).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },
@@ -55,6 +67,12 @@ const questions = [
         value: "multi",
         next: "q4_multi",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -70,6 +88,12 @@ const questions = [
         value: "over",
         next: "VOIE_REGULIERE",
         reason: "Pour une résidence unifamiliale (H1), la superficie maximale d'une remise est de 20 m². Votre projet dépasse ce seuil (art. 155, 7°).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },
@@ -91,6 +115,12 @@ const questions = [
         next: "VOIE_REGULIERE",
         reason: "Pour un immeuble à logements multiples, la remise est limitée à 8 m² par logement sans excéder 30 m² au total. Votre projet dépasse ces limites (art. 155, 7°).",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -111,6 +141,12 @@ const questions = [
         next: "VOIE_REGULIERE",
         reason: "La hauteur maximale d'une remise est fixée à 4,3 m (un étage) et ne peut excéder la hauteur du bâtiment principal. Votre projet dépasse l'une ou l'autre de ces limites (art. 126, 3°-4°; art. 155, 3°).",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -127,6 +163,12 @@ const questions = [
         next: "VOIE_REGULIERE",
         reason: "Une distance minimale de 2 m est requise entre la remise et le bâtiment principal. Votre projet ne respecte pas cette exigence (art. 126, 5°).",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -142,6 +184,12 @@ const questions = [
         value: "over",
         next: "VOIE_REGULIERE",
         reason: "La longueur maximale du mur de façade avant d'une remise est de 6 m. Votre projet dépasse cette limite (art. 155, 5°).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },
@@ -162,6 +210,12 @@ const questions = [
         value: "open",
         next: "q9_open",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -178,6 +232,12 @@ const questions = [
         next: "VOIE_REGULIERE",
         reason: "Pour un mur sans ouverture, le recul minimal par rapport aux lignes de terrain est de 0,75 m. Votre projet ne respecte pas cette exigence (art. 155, 4° a).",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -193,6 +253,12 @@ const questions = [
         value: "nok",
         next: "VOIE_REGULIERE",
         reason: "Pour un mur comportant une ouverture (fenêtre ou porte), le recul minimal par rapport aux lignes de terrain est de 1,5 m. Votre projet ne respecte pas cette exigence (art. 155, 4° b).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },

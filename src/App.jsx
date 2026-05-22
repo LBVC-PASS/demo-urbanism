@@ -80,6 +80,14 @@ export default function App() {
         result: 'VOIE_RAPIDE',
         currentQuestionId: null,
       })
+    } else if (option.next === 'BESOIN_AIDE') {
+      setWizardState({
+        ...wizardState,
+        answers: newAnswers,
+        result: 'BESOIN_AIDE',
+        triggerReason: null,
+        currentQuestionId: null,
+      })
     } else {
       setWizardState({
         ...wizardState,

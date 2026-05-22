@@ -13,6 +13,12 @@ const questionsCloture = [
       { label: "Cour avant secondaire (terrain d'angle, côté rue secondaire)", value: "avant_sec", next: "cl_q2_autre" },
       { label: "Cour latérale", value: "laterale", next: "cl_q2_autre" },
       { label: "Cour arrière", value: "arriere", next: "cl_q2_autre" },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
 
@@ -31,6 +37,12 @@ const questionsCloture = [
         next: "VOIE_REGULIERE",
         reason: "En cour avant principale, la hauteur maximale autorisée pour une clôture est de 1,2 m. Votre projet dépasse cette limite (art. 144, Tableau 9).",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -46,6 +58,12 @@ const questionsCloture = [
         value: "nok",
         next: "VOIE_REGULIERE",
         reason: "En cour avant principale, la clôture doit être implantée à au moins 1 m de la ligne de rue (art. 144, Tableau 9).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },
@@ -64,6 +82,12 @@ const questionsCloture = [
         value: "over",
         next: "VOIE_REGULIERE",
         reason: "La hauteur maximale autorisée est de 1,8 m pour les cours avant secondaires, latérales et arrière. Votre projet dépasse cette limite (art. 144, Tableau 9).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },
@@ -86,6 +110,12 @@ const questionsCloture = [
         value: "nok",
         next: "VOIE_REGULIERE",
         reason: "Une distance minimale de 1,5 m de tout équipement d'utilité publique et de 2 m d'une borne fontaine est requise. Vérifiez l'emplacement des équipements avant de procéder (art. 143).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },
@@ -117,6 +147,12 @@ const questionsCloture = [
         next: "VOIE_REGULIERE",
         reason: "Le matériau prévu figure parmi les matériaux interdits (art. 146). Les matériaux prohibés incluent notamment : broche à poulet, fils barbelés, lattes de clôture à neige, panneaux de particules exposés, traverses de chemin de fer, et blocs de béton non architecturaux.",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -128,6 +164,12 @@ const questionsCloture = [
     options: [
       { label: "Non", value: "no", next: "VOIE_RAPIDE" },
       { label: "Oui, le terrain est adjacent au boulevard des Promenades", value: "yes", next: "cl_q7" },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -147,6 +189,12 @@ const questionsCloture = [
         value: "nok",
         next: "VOIE_REGULIERE",
         reason: "Le long du boulevard des Promenades, seule une clôture en maille de chaîne (type FROST) ajourée à au moins 75 % et camouflée par une haie dense est autorisée. Votre projet ne respecte pas ces conditions (art. 147).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },

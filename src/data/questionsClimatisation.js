@@ -16,6 +16,12 @@ const questionsClimatisation = [
         next: "VOIE_REGULIERE",
         reason: "Les appareils de climatisation et thermopompes ne peuvent être installés sur la façade principale visible de la rue. Une dérogation doit être évaluée par l'urbaniste (art. 7.3.1, R-1300-2).",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -31,6 +37,12 @@ const questionsClimatisation = [
         value: "insufficient",
         next: "VOIE_REGULIERE",
         reason: "L'unité extérieure doit être placée à au moins 1 m de la ligne de propriété pour limiter les nuisances sonores chez le voisin (art. 7.3.2, R-1300-2).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },
@@ -48,6 +60,12 @@ const questionsClimatisation = [
         next: "VOIE_REGULIERE",
         reason: "Tout équipement installé en zone de contraintes naturelles ou à proximité d'un cours d'eau requiert une analyse complète et peut nécessiter une autorisation du gouvernement provincial.",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -64,6 +82,12 @@ const questionsClimatisation = [
         next: "VOIE_REGULIERE",
         reason: "Le niveau sonore de l'appareil doit être confirmé à 55 dB(A) ou moins pour éviter des nuisances sonores aux voisins. Une fiche technique doit être soumise pour évaluation (art. 9.1.4).",
       },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
+      },
     ],
   },
   {
@@ -79,6 +103,12 @@ const questionsClimatisation = [
         value: "no",
         next: "VOIE_REGULIERE",
         reason: "Les travaux de mécanique du bâtiment doivent être réalisés par un entrepreneur titulaire d'une licence RBQ valide. L'auto-installation n'est pas permise pour ce type d'appareil (Loi sur le bâtiment).",
+      },
+      {
+        label: "Je ne suis pas certain(e)",
+        value: "uncertain",
+        next: "BESOIN_AIDE",
+        isHelp: true,
       },
     ],
   },
