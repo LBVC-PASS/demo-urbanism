@@ -78,13 +78,26 @@ export default function ResultScreen({ result, triggerReason, answers, questions
           <p className="text-gray-700 text-sm mb-4">
             Votre projet nécessite une analyse par un professionnel. Veuillez vous présenter ou communiquer avec le service responsable :
           </p>
-          <div className="bg-white rounded-xl border border-orange-200 p-4 space-y-1">
+          <div className="bg-white rounded-xl border border-orange-200 p-4 space-y-2">
             <p className="font-bold text-gray-900 text-sm">
               Service de l'Aménagement du territoire et du développement durable
             </p>
-            <p className="text-sm text-gray-600">Ville de Sainte-Marthe-sur-le-Lac</p>
-            <p className="text-sm text-gray-600">3060, boul. des Promenades</p>
-            <p className="text-sm text-gray-600">Sainte-Marthe-sur-le-Lac (Québec)  J0N 1P0</p>
+            <p className="text-sm text-gray-600">
+              99, rue de la Mairie<br />
+              Sainte-Marthe-sur-le-Lac (Québec) J0N 1P0
+            </p>
+            <p className="text-sm text-gray-700">
+              📞{' '}
+              <a href="tel:+14504727310,120" className="hover:underline">
+                450 472-7310, poste 120
+              </a>
+            </p>
+            <p className="text-sm text-gray-700">
+              ✉️{' '}
+              <a href="mailto:urbanisme@vsmsll.ca" className="text-[#1B4F8A] hover:underline">
+                urbanisme@vsmsll.ca
+              </a>
+            </p>
           </div>
         </div>
       )}
